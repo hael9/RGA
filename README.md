@@ -1,5 +1,12 @@
-This project is discontinued.\
-Most of the code is very bad, if you copy something make sure you fix it up.\
+<p align="center">
+  <img width="500px" src="assets/pepebusiness.png"/>
+</p>
+I want to carry on RoseGold's torch.
+Feel free to PR.
+You can message me in disc., 206297018409156609
+
+RoseGold's Words:
+Most of the code is very bad, if you copy something make sure you fix it up.
 Thanks to the ones who have supported me during the making of this
 
 # RoseGoldAddons Feature List:
