@@ -2,7 +2,6 @@ package rosegoldaddons.mixins;
 
 import net.minecraft.client.gui.FontRenderer;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.dom4j.util.StringUtils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;

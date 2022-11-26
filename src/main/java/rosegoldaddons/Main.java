@@ -48,10 +48,12 @@ public class Main {
 
     public static GuiScreen display = null;
     public static Config configFile = Config.INSTANCE;
-    public static KeyBinding[] keyBinds = new KeyBinding[20];
+    public static KeyBinding[] keyBinds = new KeyBinding[21];
     public static boolean endermanMacro = false;
     public static boolean powderMacro = false;
     public static boolean AOTSMacro = false;
+
+    public static boolean analysisTool = false;
     public static boolean SoulWhipMacro = false;
     public static boolean GhostMacro = false;
     public static boolean gemNukeToggle = false;
@@ -143,6 +145,7 @@ public class Main {
         MinecraftForge.EVENT_BUS.register(new AutoLeaveLimbo());
         MinecraftForge.EVENT_BUS.register(new AutoThreeWeirdos());
         MinecraftForge.EVENT_BUS.register(new AutoClicker());
+        MinecraftForge.EVENT_BUS.register(new AnalysisTool());
         configFile.initialize();
         ClientCommandHandler.instance.registerCommand(new OpenSettings());
         ClientCommandHandler.instance.registerCommand(new Rosedrobe());
@@ -152,6 +155,7 @@ public class Main {
         ClientCommandHandler.instance.registerCommand(new Rosepet());
         ClientCommandHandler.instance.registerCommand(new AllEntities());
         ClientCommandHandler.instance.registerCommand(new SexPlayer());
+        ClientCommandHandler.instance.registerCommand(new AnalysisToolCommand());
 
         if(!issue) {
             JsonArray funnynames = rga.get("funnynames").getAsJsonArray();
@@ -261,6 +265,7 @@ public class Main {
         keyBinds[17] = new KeyBinding("Mithril Macro Toggle", Keyboard.KEY_NONE, "RoseGoldAddons - Mining");
         keyBinds[18] = new KeyBinding("Toggle Custom Names", Keyboard.KEY_NONE, "RoseGoldAddons");
         keyBinds[19] = new KeyBinding("Toggle Stranded Villager Trading", Keyboard.KEY_NONE, "RoseGoldAddons");
+        keyBinds[20] = new KeyBinding("Toggle Analysis Tool", Keyboard.KEY_NONE, "RoseGoldAddons");
 
         for (KeyBinding keyBind : keyBinds) {
             ClientRegistry.registerKeyBinding(keyBind);
@@ -455,6 +460,15 @@ public class Main {
                 StrandedVillagerMacro.emptied = false;
                 ChatUtils.sendMessage(strandedVillagers ? "§aStranded Villager Trading Activated" : "§cStranded Villager Trading Deactivated");
             }
+        } else if(keyBinds[20].isPressed()) {
+            if (analysisTool) {
+                AnalysisTool.copyToClipboard();
+                AnalysisTool.componentList.clear();
+            }
+
+            analysisTool = !analysisTool;
+            String str = analysisTool ? "Analysis Tool Activated" : "Analysis Tool Deactivated";
+            ChatUtils.sendMessage(str);
         }
     }
 
